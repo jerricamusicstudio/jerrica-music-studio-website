@@ -1,0 +1,89 @@
+---
+layout: base.njk
+permalink: /vocal-exercises/browse/
+title: Browse Exercises by Name | Jerrica Music Studio
+description: Browse every vocal exercise alphabetically by name, or search to find one quickly.
+---
+
+<div class="breadcrumb"><a href="/vocal-exercises/">Vocal Exercise Library</a> &rsaquo; Browse by Name</div>
+
+<section class="page-hero">
+  <div class="eyebrow">Vocal Exercise Library</div>
+  <h1>Browse Exercises by Name</h1>
+  <p>Every exercise in the library, in one alphabetical list. Search by name, or scroll to browse.</p>
+</section>
+
+<div class="browse">
+  <div class="browse__search">
+    <input
+      type="text"
+      id="exercise-search"
+      class="browse__search-input"
+      placeholder="Search exercises by name&hellip;"
+      autocomplete="off"
+      {% if not exercisesByLetter.length %}disabled{% endif %}
+    >
+  </div>
+
+  {% if exercisesByLetter.length %}
+  <div id="browse-groups">
+    {% for group in exercisesByLetter %}
+    <div class="browse__group" data-letter-group>
+      <h2 class="browse__letter">{{ group.letter }}</h2>
+      <div class="browse__list">
+        {% for exercise in group.exercises %}
+        <a class="browse__item" href="/vocal-exercises/{{ exercise.range }}/{{ exercise.category }}/{{ exercise.slug }}/" data-name="{{ exercise.name | lower }}">
+          <span class="browse__item-name">{{ exercise.name }}</span>
+          <span class="browse__item-meta">{{ exercise.rangeName }} &middot; {{ exercise.categoryName }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p id="browse-no-results" class="browse__empty" hidden>No exercises match your search.</p>
+  {% else %}
+  <div class="coming-soon">
+    <div class="coming-soon__box">
+      <p>No exercises yet.</p>
+      <p>Exercises will appear here alphabetically as they're added to the library.</p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="page-cta">
+  <a href="/vocal-exercises/" class="btn btn-secondary">&larr; Back to Vocal Exercise Library</a>
+</div>
+
+{% if exercisesByLetter.length %}
+<script>
+  (function () {
+    var input = document.getElementById('exercise-search');
+    var groups = document.querySelectorAll('[data-letter-group]');
+    var noResults = document.getElementById('browse-no-results');
+    if (!input) return;
+
+    input.addEventListener('input', function () {
+      var query = input.value.trim().toLowerCase();
+      var anyVisible = false;
+
+      groups.forEach(function (group) {
+        var items = group.querySelectorAll('.browse__item');
+        var groupHasVisible = false;
+
+        items.forEach(function (item) {
+          var match = item.getAttribute('data-name').indexOf(query) !== -1;
+          item.hidden = !match;
+          if (match) groupHasVisible = true;
+        });
+
+        group.hidden = !groupHasVisible;
+        if (groupHasVisible) anyVisible = true;
+      });
+
+      noResults.hidden = anyVisible;
+    });
+  })();
+</script>
+{% endif %}

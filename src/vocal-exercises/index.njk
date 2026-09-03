@@ -1,0 +1,55 @@
+---
+layout: base.njk
+permalink: /vocal-exercises/
+title: Vocal Exercise Library | Jerrica Music Studio
+description: A growing collection of vocal exercises organized by experience level and vocal range, or searchable by name.
+---
+
+<section class="page-hero">
+  <div class="eyebrow">Vocal Exercise Library</div>
+  <h1>Vocal Exercise Library</h1>
+  <p>A growing collection of vocal exercises designed to help singers develop technique, strength, flexibility, range, confidence, and control. Voices don't always fit neatly into one category &mdash; these ranges are meant as a starting point, not a rigid classification. There are two ways to find an exercise below: browse by your voice, or search by name.</p>
+</section>
+
+<div class="path-section">
+  <div class="path-section__label">1 &middot; Start With Your Voice</div>
+  <h2 class="path-section__heading">Browse by range, then category</h2>
+</div>
+
+<div style="text-align:center; margin-bottom:56px;">
+  <div class="exercises__callout">
+    <span>Not sure where to start?</span>
+    <a href="/vocal-exercises/beginner/" style="font-size:13px; font-weight:600; color:var(--wine); letter-spacing:0.03em;">START WITH BEGINNER &rarr;</a>
+  </div>
+</div>
+
+<div class="range-grid">
+  {% for range in ranges %}
+  <a class="range-card {% if range.isBeginner %}range-card--featured{% endif %}" href="/vocal-exercises/{{ range.slug }}/">
+    {% if range.eyebrow %}<div class="range-card__eyebrow">{{ range.eyebrow }}</div>{% endif %}
+    <h2>{{ range.name }}</h2>
+    <p>{{ range.tileNote }}</p>
+  </a>
+  {% endfor %}
+</div>
+
+<div style="max-width:var(--max-width); margin:0 auto; padding:0 var(--gutter) 64px; text-align:center;">
+  <div class="exercises__categories-label" style="margin-bottom:14px;">Every range includes the same 11 categories</div>
+  <div class="exercises__categories-list">
+    {% for category in categories %}
+    <div class="pill">{{ category.name }}</div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="path-section">
+  <div class="path-section__label">2 &middot; Browse Exercises by Name</div>
+  <h2 class="path-section__heading">Already know what you're looking for?</h2>
+</div>
+
+<div class="browse-cta">
+  <div class="browse-cta__box">
+    <p>Every exercise in the library, listed alphabetically with a search field to find one quickly by name.</p>
+    <a href="/vocal-exercises/browse/" class="btn btn-primary">Browse Exercises by Name</a>
+  </div>
+</div>

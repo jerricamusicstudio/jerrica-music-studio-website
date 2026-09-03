@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or site.name }}</title>
+  <meta name="description" content="{{ description or 'Vocal coaching, artist development, songwriting, music production, and social media training with Jerrica Alyssa.' }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="site-nav site-nav--left">
+      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#services">Services</a>
+    </nav>
+
+    <a href="/" class="site-header__logo">
+      <img src="/images/logo-black.png" alt="{{ site.name }}">
+    </a>
+
+    <div class="site-nav site-nav--right">
+      <nav class="site-nav-links">
+        <a href="/vocal-exercises/">Vocal Exercises</a>
+        <a href="/equipment/">Gear</a>
+        <a href="/#testimonials">Testimonials</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <a href="#" class="btn btn-primary">Book a Trial Lesson</a>
+    </div>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="mobile-menu" id="mobile-menu">
+      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#services">Services</a>
+      <a href="/vocal-exercises/">Vocal Exercises</a>
+      <a href="/equipment/">Gear</a>
+      <a href="/#testimonials">Testimonials</a>
+      <a href="/#contact">Contact</a>
+      <a href="#" class="btn btn-primary">Book a Trial Lesson</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="/images/logo-white.png" alt="{{ site.name }}">
+        <p class="site-footer__tagline">Founded and led by {{ site.founder }}</p>
+        <p class="site-footer__services">{{ site.services | join(" &middot; ") | safe }}</p>
+      </div>
+
+      <nav class="site-footer__nav">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#services">Services</a>
+        <a href="/vocal-exercises/">Vocal Exercises</a>
+        <a href="/equipment/">Gear</a>
+        <a href="/#testimonials">Testimonials</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+      <div class="site-footer__contact">
+        <a href="{{ site.social.tiktok }}" target="_blank" rel="noopener">TikTok</a>
+        <span class="sep">&middot;</span>
+        <a href="{{ site.social.youtube }}" target="_blank" rel="noopener">YouTube</a>
+        <span class="sep">&middot;</span>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+
+      <div class="site-footer__bottom">
+        <small>&copy; {{ site.year }} {{ site.name }}. All rights reserved.</small>
+        <a href="/privacy/">Privacy &amp; Disclosures</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var menu = document.getElementById('mobile-menu');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>

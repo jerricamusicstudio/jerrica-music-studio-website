@@ -1,0 +1,44 @@
+---
+layout: base.njk
+pagination:
+  data: exerciseCategoryPages
+  size: 1
+  alias: item
+permalink: "/vocal-exercises/{{ item.range.slug }}/{{ item.category.slug }}/"
+eleventyComputed:
+  title: "{{ item.range.name }} {{ item.category.name }} Exercises | Jerrica Music Studio"
+  description: "{{ item.category.name }} vocal exercises for {{ item.range.name }}."
+---
+
+<div class="breadcrumb">
+  <a href="/vocal-exercises/">Vocal Exercise Library</a> &rsaquo;
+  <a href="/vocal-exercises/{{ item.range.slug }}/">{{ item.range.name }}</a> &rsaquo;
+  {{ item.category.name }}
+</div>
+
+<section class="page-hero">
+  <div class="eyebrow">{{ item.range.name }}</div>
+  <h1>{{ item.category.name }}</h1>
+</section>
+
+{% if item.exercises.length %}
+<div class="exercise-list">
+  {% for exercise in item.exercises %}
+  <a class="exercise-list__item" href="/vocal-exercises/{{ item.range.slug }}/{{ item.category.slug }}/{{ exercise.slug }}/">
+    <span class="exercise-list__name">{{ exercise.name }}</span>
+    {% if exercise.difficulty %}<span class="exercise-list__difficulty">{{ exercise.difficulty }}</span>{% endif %}
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="coming-soon">
+  <div class="coming-soon__box">
+    <p>New exercises coming soon.</p>
+    <p>{{ item.range.name }} &middot; {{ item.category.name }} exercises are being added to the library.</p>
+  </div>
+</div>
+{% endif %}
+
+<div class="page-cta">
+  <a href="/vocal-exercises/{{ item.range.slug }}/" class="btn btn-secondary">&larr; Back to {{ item.range.name }}</a>
+</div>

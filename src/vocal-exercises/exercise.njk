@@ -1,0 +1,58 @@
+---
+layout: base.njk
+pagination:
+  data: exercises
+  size: 1
+  alias: exercise
+permalink: "/vocal-exercises/{{ exercise.range }}/{{ exercise.category }}/{{ exercise.slug }}/"
+eleventyComputed:
+  title: "{{ exercise.name }} | Jerrica Music Studio"
+  description: "{{ exercise.whatItHelps }}"
+---
+
+<div class="breadcrumb">
+  <a href="/vocal-exercises/">Vocal Exercise Library</a> &rsaquo;
+  <a href="/vocal-exercises/{{ exercise.range }}/">{{ exercise.rangeName }}</a> &rsaquo;
+  <a href="/vocal-exercises/{{ exercise.range }}/{{ exercise.category }}/">{{ exercise.categoryName }}</a> &rsaquo;
+  {{ exercise.name }}
+</div>
+
+<section class="page-hero">
+  <div class="eyebrow">{{ exercise.rangeName }} &middot; {{ exercise.categoryName }}</div>
+  <h1>{{ exercise.name }}</h1>
+  {% if exercise.difficulty %}<p class="exercise-detail__difficulty">Difficulty: {{ exercise.difficulty }}</p>{% endif %}
+</section>
+
+<div class="exercise-detail">
+  {% if exercise.whatItHelps %}
+  <div class="exercise-detail__block">
+    <h2>What it helps</h2>
+    <p>{{ exercise.whatItHelps }}</p>
+  </div>
+  {% endif %}
+
+  {% if exercise.instructions %}
+  <div class="exercise-detail__block">
+    <h2>Instructions</h2>
+    <p>{{ exercise.instructions }}</p>
+  </div>
+  {% endif %}
+
+  {% if exercise.audioVideo %}
+  <div class="exercise-detail__block">
+    <h2>Listen / Watch</h2>
+    <p><a href="{{ exercise.audioVideo }}" target="_blank" rel="noopener">{{ exercise.audioVideo }}</a></p>
+  </div>
+  {% endif %}
+
+  {% if exercise.coachingNotes %}
+  <div class="exercise-detail__block exercise-detail__notes">
+    <h2>Coaching Notes</h2>
+    <p>{{ exercise.coachingNotes }}</p>
+  </div>
+  {% endif %}
+</div>
+
+<div class="page-cta">
+  <a href="/vocal-exercises/{{ exercise.range }}/{{ exercise.category }}/" class="btn btn-secondary">&larr; Back to {{ exercise.categoryName }}</a>
+</div>

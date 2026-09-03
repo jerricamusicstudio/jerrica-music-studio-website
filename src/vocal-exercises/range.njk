@@ -1,0 +1,38 @@
+---
+layout: base.njk
+pagination:
+  data: ranges
+  size: 1
+  alias: range
+permalink: "/vocal-exercises/{{ range.slug }}/"
+eleventyComputed:
+  title: "{{ range.name }} Vocal Exercises | Jerrica Music Studio"
+  description: "{{ range.name }} vocal exercises, organized into 11 categories."
+---
+
+<div class="breadcrumb"><a href="/vocal-exercises/">Vocal Exercise Library</a> &rsaquo; {{ range.name }}</div>
+
+<section class="page-hero">
+  {% if range.eyebrow %}<div class="eyebrow">{{ range.eyebrow }}</div>{% endif %}
+  <h1>{{ range.name }}</h1>
+  <p>{{ range.tileNote }}</p>
+</section>
+
+{% if range.isBeginner %}
+<div class="beginner-intro">
+  <div class="beginner-intro__inner">
+    <h3>New to vocal exercises? Start here.</h3>
+    <p>Before diving in, get comfortable with the basics: posture and breath support, how often and how long to practice, and when to ease off if something feels strained. This section is written for someone who has never done vocal exercises before &mdash; no need to know your vocal type yet.</p>
+  </div>
+</div>
+{% endif %}
+
+<div class="category-grid">
+  {% for category in categories %}
+  <a class="category-card" href="/vocal-exercises/{{ range.slug }}/{{ category.slug }}/">{{ category.name }}</a>
+  {% endfor %}
+</div>
+
+<div class="page-cta">
+  <a href="/vocal-exercises/" class="btn btn-secondary">&larr; Back to Vocal Exercise Library</a>
+</div>

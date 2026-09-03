@@ -1,0 +1,32 @@
+---
+layout: base.njk
+permalink: /equipment/
+title: Recommended Equipment | Jerrica Music Studio
+description: Gear Jerrica Alyssa actually uses and recommends, from beginner equipment to full home studio setups.
+---
+
+<section class="page-hero">
+  <div class="eyebrow">Curated, Not a Storefront</div>
+  <h1>Gear I Actually Use</h1>
+</section>
+
+<div class="equipment-page__intro">
+  <p>[Your intro goes here &mdash; two or three sentences, in your own words, on why you're sharing this list.]</p>
+</div>
+
+<div class="equipment-page__cta">
+  <a href="{{ site.amazonEquipmentListUrl }}" class="btn btn-primary" target="_blank" rel="noopener">View My Amazon Equipment List</a>
+</div>
+
+<div class="equipment-page__disclosure">
+  <p>As an Amazon Associate, I earn from qualifying purchases made through links on this page, at no additional cost to you.</p>
+</div>
+
+<div class="equipment-categories">
+  {% for cat in equipmentCategories %}
+  <div class="equipment-category" id="{{ cat.slug }}">
+    <h2>{{ cat.name }}</h2>
+    <div class="equipment-category__placeholder">Picks coming soon.</div>
+  </div>
+  {% endfor %}
+</div>
